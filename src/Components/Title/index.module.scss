@@ -1,0 +1,14 @@
+.title{
+    font-size:10rem;
+    font-weight:700;
+    color:var(--color-brand--1);
+    font-family:Nova Square;
+    text-shadow:0 1rem 1.5rem rgba(0,0,0,.8);
+    animation: animation 0.5s;
+}
+
+@keyframes animation {
+    0%{
+        transform: translate(-10rem,-2rem);
+    }
+}

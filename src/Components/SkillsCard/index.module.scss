@@ -1,0 +1,101 @@
+.skill_card{
+    margin: 5rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 300;    
+    color: var(--color-brand--1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Saira Stencil One';
+    .main_card_section{
+        display: flex;
+        width: 70%;
+        .main_card{
+            min-width: 50rem;
+            max-width: 90%;
+            background: var(--color-brand--10);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            padding: 1rem 0.5rem;
+            overflow-x: scroll;
+            box-shadow: 0 0 1.5rem rgb(73, 73, 73);
+            animation: animation_card 0.5s;
+            @keyframes animation_card {
+                from{
+                    transform: scale(0.5);
+                }
+                to{
+                    transform: scale(1);
+                }
+            }
+            &::-webkit-scrollbar{
+                height: 0.5rem;
+            }
+            &::-webkit-scrollbar-thumb{
+             visibility: hidden;       
+            }
+            &:hover::-webkit-scrollbar-thumb{
+             visibility: visible;       
+            }
+            .title{
+                text-align: center;
+                font-size: 2.5rem;
+                font-weight: 500;
+                font-family: 'Saira Stencil One';
+                color: var(--color-brand--theme-text) ;
+            }
+            table{
+                width: 100%;
+                border-collapse: collapse;
+                tr th{
+                    max-width: 100%;
+                    font-family: 'Saira Stencil One';
+                    text-align: center;
+                    font-weight: 500;
+                    color: var(--color-brand--9 );
+                }
+                & tr:nth-child(even){
+                    background-color: rgba(0, 0, 0, 0.212);
+                }   
+                td,th{
+                    text-align: left;
+                    padding: 1rem 3rem;
+                }
+            }
+            
+            
+        }
+    }
+    .img_section{
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 30rem;
+            height: 30rem;
+            object-fit: contain;    
+            filter: grayscale(100%);
+            animation: animation_card 0.5s;
+            border-radius: 1rem;
+            @keyframes animation_card {
+                from{
+                    transform: scale(0.5);
+                }
+                to{
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+}
+@media (max-width: 564px) {
+    .img_section{
+        display: none !important
+    }
+    .main_card_section{
+        width: 100% !important
+    }
+}

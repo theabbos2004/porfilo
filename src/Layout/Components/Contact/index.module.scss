@@ -1,0 +1,125 @@
+.footer{
+    height:100%;
+    backdrop-filter: blur(1rem);
+    background: var(--color-brand--10);
+    padding:2.5rem 0;
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s;
+}
+.contact_text{
+    font-weight:600;
+    font-size:2rem;
+    color:var(--color-brand--1);
+    transform: rotate(-90deg) translateX(-5rem);
+    transition: transform 0.2s;
+}
+.lines{
+    width: 8rem;
+    transform: rotate(-90deg);
+    display: flex;
+}
+.fist_line{
+    width: 4rem;
+    height: 0.5rem;
+    background-color: var(--color-brand--1);
+}
+.second_line{
+    width: 4rem;
+    height: 0.5rem;
+    background-color: var(--color-brand--1);
+}
+.messenger_section{
+    width: 100%;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+.messenger{
+    display: none;
+    color: var(--color-brand--1 );
+    width: 60%;
+    padding-left: 4rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+.contact_active{
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: space-evenly;
+}
+.messenger_sector_active{
+    padding:5rem 0rem;
+    min-width: 45rem;
+    min-height: 25rem;
+    background-image: linear-gradient(45deg,var(--color-brand--2),var(--color-brand--theme-text));
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 1rem;
+    .qr_section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        p{
+            color: var(--color-brand--1);
+            font-family: Play;
+            font-weight: 600;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+        .qr_code{
+            outline: 0.1rem solid white;
+            padding: 0.2rem;
+            width: 8rem;
+        }
+    }
+    .contact_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .messenger_section{
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .messenger{
+            display: block;  
+            padding-left: 1rem;
+            font-size: 1.3rem;
+            opacity: 0.6;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+    animation: messenger_animation 1s;
+}   
+.email_section{
+    height: 100%;
+    background-color: aqua;
+}
+@keyframes messenger_animation{   
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}

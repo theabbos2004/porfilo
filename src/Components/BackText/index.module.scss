@@ -1,0 +1,17 @@
+
+.sector{
+    width: 200%;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    transform:rotate(-45deg) translate(-10rem,-80rem);
+    .word{
+        font-family: "Poppins",sans-serif;
+        font-size: 13rem;
+        line-height: 16rem;
+        font-weight:600;
+        color: transparent;
+        -webkit-text-stroke: 0.1rem rgb(202, 202, 202);
+        margin: 0 3rem;
+    }
+}

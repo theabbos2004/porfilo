@@ -1,0 +1,50 @@
+.about_bob{
+    width: 100%;
+    height: calc(100% - 2rem);
+    display: flex;
+    flex-direction: column;
+}
+.intro{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    .who_section{
+        width: 65%;
+        height: 100%;
+        font-size: 2.5rem;
+        font-weight: 500;
+        color: var(--color-brand--1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 5%;
+        .who_cover{
+            display: flex;
+            flex-direction: column;
+        }
+        .desc p{
+            display: inline-block;
+            color: var(--color-brand--theme-text);
+        }
+    }
+    .image_section{ 
+        width: 35%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .profile_name{
+        color: var(--color-brand--1);
+        font-weight: 700;
+        font-size: 2rem;
+        transform: translate(2rem,2rem);
+    }
+}
+.page_number{
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}

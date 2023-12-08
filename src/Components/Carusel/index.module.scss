@@ -1,0 +1,19 @@
+.carusel{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.move_btn{
+    width:5rem;
+    height:100%;
+    position:absolute;
+    z-index:4;
+    right:10%;
+    
+}
+.btn_box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

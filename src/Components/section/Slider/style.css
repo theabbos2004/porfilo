@@ -1,0 +1,18 @@
+  :root {
+    --swiper-theme-color: var(--color-brand--theme-text);
+  }
+  .swiper-slide {
+    width: 85%;
+    border-radius: 2rem;
+  }
+  .swiper-scrollbar{
+    display: none;
+  } 
+  .swiper-slide img{
+    border-radius: 1.5rem;
+  }
+  @media (max-width:576px) {
+    .swiper-slide{
+        width: 100%;
+    }
+  }
