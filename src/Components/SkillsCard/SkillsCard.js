@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./index.module.scss";
-import ReactImageMagnify from "react-image-magnify";
 export default function SkillsCard({ key, data = [], index = 0 }) {
   return (
     <div className={styles.skill_card} key={key}>
