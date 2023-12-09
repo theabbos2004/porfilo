@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styles from "./index.module.scss"
 import Title from '../../Title/Title'
 import ProfilePhoto from '../../ProfilePhoto/ProfilePhoto'
 import ProfileImage from '../../../img/Profile.png'
 import { NextIcon } from '../../../img/icons/Icons'
+import { useNavigate } from 'react-router-dom'
+import { NextPage } from '../../../Hooks/NextPage'
 export default function AboutSector() {
   let [state,setState]=useState({
     info:[
@@ -13,8 +15,11 @@ export default function AboutSector() {
       {id:4,title:"Information",drop:"Renessans ta'lim university (extramural study)"},
     ]
   })
+  let pathName=useNavigate()  
+  let scroolRef=useRef()
+  NextPage(scroolRef,pathName)
   return (
-    <div className={styles.about_bob}>
+    <div className={styles.about_bob} ref={scroolRef}>
       <div className={styles.intro}>
         <div className={styles.image_section}>
             <ProfilePhoto src={ProfileImage} sx={{transform:"translate(-2rem,-2rem)"}}/>

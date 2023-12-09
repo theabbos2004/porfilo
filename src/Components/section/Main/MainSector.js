@@ -8,6 +8,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { useDispatch, useSelector } from 'react-redux'
 import { contactActive } from '../../../Layout/Store/StoreSlice'
 import { NextPage } from '../../../Hooks/NextPage'
+import { unstable_HistoryRouter, useNavigate, useParams } from 'react-router-dom'
 const ExampleComponent = () => {
   return (
     <TypeAnimation
@@ -24,9 +25,9 @@ const ExampleComponent = () => {
 };
 export default function MainSector() {
   let dispatch=useDispatch()
-  
+  let pathName=useNavigate()  
   let scroolRef=useRef()
-  NextPage(scroolRef)
+  NextPage(scroolRef,pathName)
   return (
     <div className={styles.main_bob} ref={scroolRef}>
       <div className={styles.intro}>

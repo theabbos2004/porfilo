@@ -1,9 +1,14 @@
-import React, { useEffect } from "react";
-export const NextPage =(scroolRef)=>{
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { activeMenu } from "../Layout/Store/StoreSlice";
+export const NextPage =(scroolRef,pathName)=>{
+    let dispatch =useDispatch()
     useEffect(() => {
         const handleScroll = () => {
-            console.log("salom");
-          // scroolRef?.current.scrollHeight-scroolRef?.current.clientHeight==scroolRef?.current.scrollTop
+         let {scrollHeight,clientHeight,scrollTop}=scroolRef?.current
+          if((scrollHeight-clientHeight)==scrollTop){
+            dispatch(activeMenu(pathName))
+          }
         };
     
         if (scroolRef && scroolRef.current) {

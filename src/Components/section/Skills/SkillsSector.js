@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styles from "./index.module.scss"
 import SkillsCard from '../../SkillsCard/SkillsCard'
+import {NextPage} from '../../../Hooks/NextPage'
 import { BootstrapIcons, CssIcons, FigmaIcons, GitHubIcons, GitIcons, HtmlIcons, JSIcons, ReactIcons, SASSIcons, UzFlagIcon } from '../../../img/icons/Icons'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
+import { useNavigate } from 'react-router-dom';
 export default function SkillsSector() {
     let [state,setState]=useState({
         skills:[
@@ -116,11 +118,13 @@ export default function SkillsSector() {
                 img:require("../../../img/brain.png")
             },
         ]
-        // SHAHODATNOMA
     })
+    let pathName=useNavigate()
+    let scroolRef=useRef()
+    NextPage(scroolRef,pathName)
   return (
     <div className={styles.skills_bob}>
-        <div className={styles.skills_section}>
+        <div className={styles.skills_section} ref={scroolRef}>
             {
                 state.skills?.map((item,index)=><SkillsCard key={item.id} data={item} index={index}/>)
             }

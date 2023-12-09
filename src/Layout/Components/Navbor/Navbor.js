@@ -17,7 +17,8 @@ export default function Navbor() {
               to={item.pathName}
               className={`${item.active?styles.active:""}`}
               style={{opacity:item.active?1:0.65}}  
-              onClick={()=>isActive(item.id)}>
+              onClick={()=>isActive(item.id)}
+              >
               {item.title}
               <div className={`${item.active?styles.menu_line:""}`}></div>
             </Link>)
