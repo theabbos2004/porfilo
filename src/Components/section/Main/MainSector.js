@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from "./index.module.scss"
 import Title from '../../Title/Title'
 import ProfilePhoto from '../../ProfilePhoto/ProfilePhoto'
@@ -7,6 +7,7 @@ import Button from '../../Button/Button'
 import { TypeAnimation } from 'react-type-animation';
 import { useDispatch, useSelector } from 'react-redux'
 import { contactActive } from '../../../Layout/Store/StoreSlice'
+import { NextPage } from '../../../Hooks/NextPage'
 const ExampleComponent = () => {
   return (
     <TypeAnimation
@@ -24,8 +25,10 @@ const ExampleComponent = () => {
 export default function MainSector() {
   let dispatch=useDispatch()
   
+  let scroolRef=useRef()
+  NextPage(scroolRef)
   return (
-    <div className={styles.main_bob}>
+    <div className={styles.main_bob} ref={scroolRef}>
       <div className={styles.intro}>
         <div className={styles.who_section}>
             <div className={styles.who_cover}>
@@ -34,7 +37,8 @@ export default function MainSector() {
             </div>
             <div className={styles.offer}>
               <p>contact me to develop your <ExampleComponent/> further</p>
-              <Button onClick={()=>dispatch(contactActive({payload:true}))}/>
+              <Button onClick={()=>{
+                dispatch(contactActive({payload:true}))}}/>
             </div>
         </div>
         <div className={styles.image_section}>
