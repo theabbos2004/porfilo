@@ -37,7 +37,9 @@ export default function Slider({
       >
       {
         data.map((item)=><SwiperSlide>
-          <img src={item.imgUrl} style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+          <a href={item?.link} target="-blank">
+            <img src={item.imgUrl} style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+          </a>
         </SwiperSlide>)
       }
       </Swiper>

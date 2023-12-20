@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import styles from "./index.module.scss"
 import SkillsCard from '../../SkillsCard/SkillsCard'
 import {NextPage} from '../../../Hooks/NextPage'
-import { BootstrapIcons, CssIcons, FigmaIcons, GitHubIcons, GitIcons, HtmlIcons, JSIcons, ReactIcons, SASSIcons, UzFlagIcon } from '../../../img/icons/Icons'
+import { BootstrapIcons, CheckIcon, CssIcons, FigmaIcons, GitHubIcons, GitIcons, HtmlIcons, JSIcons, ReactIcons, SASSIcons, UzFlagIcon } from '../../../img/icons/Icons'
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useNavigate } from 'react-router-dom';
 export default function SkillsSector() {
@@ -37,21 +37,23 @@ export default function SkillsSector() {
             },
             {
                 id:3,
-                title:"SPORTS",
-                dropTitle:["NAME","PLACE"],
+                title:"character",
+                dropTitle:["NAME"],
                 drop:[
-                    [{id:1,drop:"TAEKWANDO WTF",icon:<img src={require('../../../img/icons/taekwondo.png')} style={{width:"3rem",height:"3rem"}}/>},
-                    {id:1.1,drop:"2 x 3 , 1, 2 "}],
-                    [{id:2,drop:"WRESTLING",icon:<img src={require('../../../img/icons/wrestler (1).png')} style={{width:"3rem",height:"3rem"}}/>},
-                    {id:2.1,drop:"3"}],
-                    [{id:3,drop:"CHESS",icon:<img src={require('../../../img/icons/queen.png')} style={{width:"3rem",height:"3rem"}}/>},
-                    {id:3.1,drop:"2"}],
+                    [{id:1,drop:"TEAM COLLABORATION",icon:<CheckIcon width="30" height='30'/>},
+                    ],
+                    [{id:2,drop:"EAGERNESS",icon:<CheckIcon width="30" height='30'/>},
+                    ],
+                    [{id:3,drop:"ALWAYS LEARNING THE NEWS",icon:<CheckIcon width="30" height='30'/>},
+                    ],
+                    [{id:4,drop:"INNOVATIVE APPROACH TO CHALLENGES",icon:<CheckIcon width="30" height='30'/>},
+                    ],
                 ],
                 img:require("../../../img/sport.png")
             },
             {
                 id:4,
-                title:"OTHER",
+                title:"my achievements",
                 dropTitle:["NAME","PLACE"],
                 drop:[
                     [{id:1,drop:"PAINTING"},
@@ -68,18 +70,14 @@ export default function SkillsSector() {
                 title:"STUDYING",
                 dropTitle:["NAME","NUMBER","YEAR","NAME"],
                 drop:[
-                    [{id:1,drop:"   KINDERGARDEN"},
-                    {id:1.1,drop:"232"},
+                    [{id:1,drop:"SCHOOL"},
+                    {id:1.1,drop:"39"},
                     {id:1.2,drop:"2008-2016"},
-                    {id:1.3,drop:"SUN"},],
-                    [{id:2,drop:"SCHOOL"},
-                    {id:2.1,drop:"39"},
-                    {id:2.2,drop:"2008-2016"},
-                    {id:2.3,drop:"secondary education"}],
-                    [{id:3,drop:"UNVERSITY"},
-                    {id:3.1,drop:"-"},
-                    {id:3.2,drop:"2023-"},
-                    {id:3.3,drop:"RENESSANS"}]
+                    {id:1.3,drop:"secondary education"}],
+                    [{id:2,drop:"UNVERSITY"},
+                    {id:2.1,drop:"-"},
+                    {id:2.2,drop:"2023-"},
+                    {id:2.3,drop:"RENESSANS"}]
                 ],
                 img:require("../../../img/studying.png")
             },
@@ -122,6 +120,7 @@ export default function SkillsSector() {
     let pathName=useNavigate()
     let scroolRef=useRef()
     NextPage(scroolRef,pathName)
+    console.log("Innovative approach to challenges".toUpperCase());
   return (
     <div className={styles.skills_bob}>
         <div className={styles.skills_section} ref={scroolRef}>

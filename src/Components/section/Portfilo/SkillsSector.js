@@ -7,14 +7,11 @@ import { NextPage } from '../../../Hooks/NextPage'
 export default function PortfiloSector() {
     let [state,setState]=useState({
         portfilos:[
-            {id:1,imgUrl:require("../../../img/digitalAgensyPortfilo.png"),imgUrl1:"red"},
-            {id:2,imgUrl:require("../../../img/foodShoopPortfio.png"),imgUrl1:"green"},
-            {id:3,imgUrl:require("../../../img/digitalAgensyPortfilo.png"),imgUrl1:"black"},
-            {id:4,imgUrl:require("../../../img/foodShoopPortfio.png"),imgUrl1:"white"},
-            {id:5,imgUrl:require("../../../img/digitalAgensyPortfilo.png"),imgUrl1:"pink"},
-            {id:6,imgUrl:require("../../../img/foodShoopPortfio.png"),imgUrl1:"orange"},
-            {id:7,imgUrl:require("../../../img/digitalAgensyPortfilo.png"),imgUrl1:"yellow"},
-            {id:8,imgUrl:require("../../../img/foodShoopPortfio.png"),imgUrl1:"blue"},
+            {id:1,imgUrl:require("../../../img/dashboard-website.png"),imgUrl1:"yellow",link:"https://dashboard-savrjonov.vercel.app/"},
+            {id:2,imgUrl:require("../../../img/auto-zona-portfilo.png"),imgUrl1:"red",link:"https://auto-zona.vercel.app/"},
+            {id:3,imgUrl:require("../../../img/blue-color-website.png"),imgUrl1:"green",link:"https://blue-collor.vercel.app"},
+            {id:4,imgUrl:require("../../../img/foodShoopPortfio.png"),imgUrl1:"green",link:"https://food-shop-blond.vercel.app"},
+            {id:5,imgUrl:require("../../../img/digitalAgensyPortfilo.png"),imgUrl1:"black",link:"https://digital-agensy.vercel.app/"},
         ]
     })
     let pathName=useNavigate()
