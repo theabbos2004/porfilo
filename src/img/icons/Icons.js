@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from "./index.module.scss"
 export function FaceBookIcon({
   color = "#1877F2",
   opacity = "0.65",
@@ -300,6 +300,60 @@ export function CheckIcon({
 }) {
   return (
     <svg width={width} height={height}  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" id="check"><path d="M8.294 16.998c-.435 0-.847-.203-1.111-.553L3.61 11.724a1.392 1.392 0 0 1 .27-1.951 1.392 1.392 0 0 1 1.953.27l2.351 3.104 5.911-9.492a1.396 1.396 0 0 1 1.921-.445c.653.406.854 1.266.446 1.92L9.478 16.34a1.39 1.39 0 0 1-1.12.656c-.022.002-.042.002-.064.002z" fill={color}></path></svg>
+  );
+}
+
+export function CheckedIcon({
+  width = "30",
+  height = "30",
+  color = "var(--color-brand--theme-text)",
+  opacity = "0.65",
+}) {
+  return (
+    <svg
+    width={width}
+    height={height}
+    viewBox="0 0 133 133"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <g
+        className={styles.check_group}
+        stroke="none"
+        stroke-width="1"
+        fill="none"
+        fill-rule="evenodd"
+    >
+        <circle
+            className={styles.filled_circle}
+            fill={color}
+            cx="66.5"
+            cy="66.5"
+            r="54.5"
+        />
+        <circle
+            className={styles.white_circle}
+            fill="#FFFFFF"
+            cx="66.5"
+            cy="66.5"
+            r="55.5"
+        />
+        <circle
+            className={styles.outline}
+            stroke={color}
+            strokeWidth="4"
+            cx="66.5"
+            cy="66.5"
+            r="54.5"
+        />
+        <polyline
+            className={styles.check}
+            stroke="#FFFFFF"
+            strokeWidth="5.5"
+            points="41 70 56 85 92 49"
+        />
+    </g>
+</svg>
   );
 }
 

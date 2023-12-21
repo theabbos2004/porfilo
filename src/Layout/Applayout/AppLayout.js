@@ -10,12 +10,6 @@ import { useEffect } from 'react'
 export default function AppLayout() {
   let [state,setState]=useState()
   let location=useLocation()
-  useEffect(()=>{
-    setTimeout(()=>{
-      console.log("salom");
-    },30)
-    
-  },[])
 
   useEffect(()=>{
     let pathname=location.pathname.split("/")[1].toUpperCase()

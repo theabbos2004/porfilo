@@ -1,38 +1,42 @@
 import React from "react";
 import styles from "./index.module.scss";
-export default function SkillsCard({ key, data = [], index = 0 }) {
+export default function SkillsCard({ data = [], index = 0 }) {
   return (
-    <div className={styles.skill_card} key={key}>
+    <div className={styles.skill_card}>
       {index % 2 == 0 ? (
         <div className={styles.main_card_section}>
           <div className={styles.main_card}>
             <p className={styles.title}>{data?.title}</p>
             <table>
+             <thead>
               <tr>
-                {data?.dropTitle?.map((item, index) => (
-                  <th key={index}>{item}</th>
-                ))}
-              </tr>
-              {data?.drop?.map((item, index) => (
-                <tr key={Math.random() * 100}>
-                  {item.map((itm, indx) => (
-                    <td key={indx}>
-                      <div style={{ display: "flex" }}>
-                        {itm.icon}
-                        <p
-                          style={{
-                            paddingLeft: "1rem",
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          {itm.drop}
-                        </p>
-                      </div>
-                    </td>
+                  {data?.dropTitle?.map((item, indx) => (
+                    <th key={indx}>{item}</th>
                   ))}
                 </tr>
-              ))}
+             </thead>
+             <tbody>
+                {data?.drop?.map((item, indx) => (
+                  <tr key={Math.random() * 100}>
+                    {item.map((itm, indx) => (
+                      <td key={indx}>
+                        <div style={{ display: "flex" }}>
+                          {itm.icon}
+                          <p
+                            style={{
+                              paddingLeft: "1rem",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            {itm.drop}
+                          </p>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+             </tbody>
             </table>
           </div>
         </div>
@@ -41,6 +45,7 @@ export default function SkillsCard({ key, data = [], index = 0 }) {
           <img src={data?.img}/>
         </div>
       )}
+
       {index % 2 == 0 ? (
         <div className={styles.img_section}>
           <img src={data?.img}/>
@@ -53,32 +58,36 @@ export default function SkillsCard({ key, data = [], index = 0 }) {
           <div className={styles.main_card}>
             <p className={styles.title}>{data?.title}</p>
             <table>
-              <tr>
-                {data?.dropTitle?.map((item, index) => (
-                  <th key={index}>{item}</th>
-                ))}
-              </tr>
-              {data?.drop?.map((item, index) => (
-                <tr key={Math.random() * 100}>
-                  {item.map((itm, indx) => (
-                    <td key={index}>
-                      <div style={{ display: "flex" }}>
-                        {itm.icon}
-                        <p
-                          key={index}
-                          style={{
-                            paddingLeft: "1rem",
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          {itm.drop}
-                        </p>
-                      </div>
-                    </td>
+              <thead>
+                <tr>
+                  {data?.dropTitle?.map((item, indx) => (
+                    <th key={indx}>{item}</th>
                   ))}
                 </tr>
-              ))}
+              </thead>
+              <tbody>
+                {data?.drop?.map((item, index) => (
+                  <tr key={Math.random() * 100}>
+                    {item.map((itm, indx) => (
+                      <td key={indx}>
+                        <div style={{ display: "flex" }}>
+                          {itm.icon}
+                          <p
+                            key={index}
+                            style={{
+                              paddingLeft: "1rem",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            {itm.drop}
+                          </p>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>

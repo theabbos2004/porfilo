@@ -7,15 +7,4 @@ const store=configureStore({
     }
 })
 
-// const CONTACT_ACTIVE="CONTACT_ACTIVE"
-
-// let action=({initialState,action})=>{
-//     switch (action.type) {
-//         case CONTACT_ACTIVE:
-
-//         default:
-//             return initialState
-//     }
-// }
-
 export default store;

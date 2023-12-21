@@ -8,12 +8,23 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "./style.css"
+import * as icon from "../../../img/icons/Icons"
 
 export default function Slider({ 
   data = [],
   width="100%",
   height="90%"
 }) {  
+  const getIcon = ({
+    params = "",
+    width = 20,
+    height = 20,
+    color = "var(--color-brand--1)",
+    opacity = 1,
+  }) => {
+    let Icon = icon[params.title];
+    return <Icon key={params?.key} width={width - 2} height={height - 2} color={color} opacity={opacity}/>;
+  };
   return (
     <div className={`container ${styles.swiper}`} style={{width,height,display:'flex',alignItems:"center",justifyContent:'center'}}>
       <Swiper
@@ -36,10 +47,24 @@ export default function Slider({
         scrollbar={{ draggable: true }}
       >
       {
-        data.map((item)=><SwiperSlide>
+        data.map((item,index)=><SwiperSlide key={index}>
           <a href={item?.link} target="-blank">
-            <img src={item.imgUrl} style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+            <img src={item?.imgUrl} style={{width:"100%",height:"100%",objectFit:"cover"}}/>
           </a>
+          <div className={styles.portfilo_footer}>
+            <a href={item?.gitHubLink} className={styles.portfilo_code}>
+              <div>Click to view the code</div>
+              <icon.GitHubIcons width="20" opacity="1" color="var(--color-brand--1)"/>
+            </a>
+            <div className={styles.portfilo_use}>
+              <div>use</div>
+              <div className={styles.icons}>
+                {
+                  item?.use?.map((icon,iconIndex)=>getIcon({params:{title:icon,key:iconIndex}}))
+                }
+              </div>
+            </div>
+          </div>
         </SwiperSlide>)
       }
       </Swiper>

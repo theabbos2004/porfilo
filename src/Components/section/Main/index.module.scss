@@ -69,3 +69,14 @@
     display: flex;
     justify-content: center;
 }
+@media screen and (max-width:576px){
+    .intro{
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .who_section,.image_section{
+        margin: 5rem;
+        height: auto !important;
+    }
+}

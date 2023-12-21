@@ -30,8 +30,8 @@ export default function SkillsSector() {
                 title:"LANGUAGE",
                 dropTitle:["NAME","NAME"],
                 drop:[
-                    [{id:1,drop:"UZBEK",icon:<span class="fi fi-uz"></span>},
-                    {id:6,drop:"ENGLISH",icon:<span class="fi fi-us"></span>}],
+                    [{id:1,drop:"UZBEK",icon:<span className="fi fi-uz"></span>},
+                    {id:6,drop:"ENGLISH",icon:<span className="fi fi-us"></span>}],
                 ],
                 img:require("../../../img/language.png")
             },
@@ -120,12 +120,11 @@ export default function SkillsSector() {
     let pathName=useNavigate()
     let scroolRef=useRef()
     NextPage(scroolRef,pathName)
-    console.log("Innovative approach to challenges".toUpperCase());
   return (
     <div className={styles.skills_bob}>
         <div className={styles.skills_section} ref={scroolRef}>
             {
-                state.skills?.map((item,index)=><SkillsCard key={item.id} data={item} index={index}/>)
+                state.skills?.map((item,index)=><SkillsCard key={index} data={item} index={index}/>)
             }
         </div>
     </div>
