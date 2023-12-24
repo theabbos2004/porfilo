@@ -1,11 +1,13 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from "./index.module.scss"
 import Title from '../../Title/Title'
 import ProfilePhoto from '../../ProfilePhoto/ProfilePhoto'
-import ProfileImage from '../../../img/Profile.png'
+import ProfileImage from '../../../img/arif-riyanto-vJP-wZ6hGBg-unsplash.jpg'
 import { NextIcon } from '../../../img/icons/Icons'
 import { useNavigate } from 'react-router-dom'
 import { NextPage } from '../../../Hooks/NextPage'
+import { PreviousPage } from '../../../Hooks/PreviousPage'
+import Button from '../../Button/Button'
 export default function AboutSector() {
   let [state,setState]=useState({
     info:[
@@ -17,7 +19,11 @@ export default function AboutSector() {
   })
   let pathName=useNavigate()  
   let scroolRef=useRef()
+  useEffect(()=>{
+    scroolRef.current.scrollTop=1
+  },[])
   NextPage(scroolRef,pathName)
+  PreviousPage(scroolRef,pathName)
   return (
     <div className={styles.about_bob} ref={scroolRef}>
       <div className={styles.intro}>
@@ -25,26 +31,30 @@ export default function AboutSector() {
             <ProfilePhoto src={ProfileImage} sx={{transform:"translate(-2rem,-2rem)"}}/>
         </div>
         <div className={styles.who_section}>
-            <div style={{display:"flex",flexDirection:"column",gap:"1rem",fontSize:"1.8rem"}}>
+            <div style={{display:"flex",flexDirection:"column",gap:"3rem",fontSize:"1.8rem"}}>
               <div style={{display:"flex",fontWeight:"600",fontSize:"3rem",color:"var(--color-brand--theme-text)"}}>
-                <p style={{color:"var(--color-brand--3)"}}>Front-end Coder</p>
+                <p style={{color:"var(--color-brand--3)"}}>Front-end Developer</p>
               </div>
-              {
-                state?.info.map((item,index)=><div key={index} style={{display:"flex",fontWeight:"500"}}>
-                <div style={{width:"30%",display:"flex",alignItems:"center",gap:"0.6rem"}}>
-                  <NextIcon width='17' height='17' color='var(--color-brand--theme-text)'/>
-                  <p style={{fontWeight:"600"}}>{item.title}</p>
-                </div>
-                <p>{item.drop}</p>
-              </div>)
-              }
-              
-              <div className={styles.desc} style={{marginTop:"3rem"}}>
+              <div>
+                {
+                  state?.info.map((item,index)=><div key={index} style={{display:"flex",fontWeight:"500",margin:"0.5rem 0"}}>
+                  <div style={{width:"30%",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+                    <NextIcon width='17' height='17' color='var(--color-brand--theme-text)'/>
+                    <p style={{fontWeight:"600"}}>{item.title}</p>
+                  </div>
+                  <p>{item.drop}</p>
+                </div>)
+                }
+              </div>
+              <div className={styles.desc}>
                   I <p>studied</p> in this field for <p>4</p> months at the IBS training center and did an <p>internship</p> at Next Tech for <p>2</p> months.
               </div>
 
-              <div className={styles.desc} style={{marginTop:"3rem"}}>
+              <div className={styles.desc}>
                   My <p>code</p> is <p>clear</p> and <p>understandable</p>. Sometimes, when I create <p>complex interfaces</p>, their external appearance is very <p>user-friendly</p>. I strive to <p>minimize</p> code repetition. I take into <p>consideration</p> the <p>requirements</p> and <p>suggestions</p> of the client.
+              </div>
+              <div>
+                <Button>Resume</Button>
               </div>
             </div>
         </div>

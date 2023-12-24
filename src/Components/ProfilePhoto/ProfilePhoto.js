@@ -10,7 +10,7 @@ export default function ProfilePhoto({
   return (
     <div style={{...sxd}}>
         <img src={src} 
-        className={styles.image}
+          className={styles.image}
          style={{borderRadius:sxd.borderRadius,...sx}}/>
     </div>
   )

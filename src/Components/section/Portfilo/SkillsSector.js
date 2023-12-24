@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 import Title from "../../Title/Title";
 import Slider from "../Slider/Slider";
 import { useNavigate } from "react-router-dom";
 import { NextPage } from "../../../Hooks/NextPage";
+import { PreviousPage } from "../../../Hooks/PreviousPage";
 export default function PortfiloSector() {
   let [state, setState] = useState({
     portfilos: [
@@ -51,7 +52,11 @@ export default function PortfiloSector() {
   });
   let pathName = useNavigate();
   let scrollRef = useRef();
-  NextPage(scrollRef, pathName);
+  useEffect(()=>{
+    scrollRef.current.scrollTop=1
+  },[])
+  NextPage(scrollRef,pathName)
+  PreviousPage(scrollRef,pathName)
   return (
     <div className={styles.portfilo_bob} ref={scrollRef}>
       <div className={styles.portfilo_section}>

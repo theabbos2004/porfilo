@@ -1,18 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 import Title from "../../Title/Title";
-import ProfilePhoto from "../../ProfilePhoto/ProfilePhoto";
-import ProfileImage from "../../../img/Profile.png";
 import Button from "../../Button/Button";
 import { TypeAnimation } from "react-type-animation";
 import { useDispatch, useSelector } from "react-redux";
-import { contactActive } from "../../../Layout/Store/StoreSlice";
-import { NextPage } from "../../../Hooks/NextPage";
-import {
-  unstable_HistoryRouter,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { contactActive, setResumeLanguage } from "../../../Layout/Store/StoreSlice";
+import { NextPage} from "../../../Hooks/NextPage";
+import {Link, useNavigate,} from "react-router-dom";
+import { PreviousPage } from "../../../Hooks/PreviousPage";
+
 const ExampleComponent = () => {
   return (
     <TypeAnimation
@@ -28,66 +24,65 @@ const ExampleComponent = () => {
     />
   );
 };
+
 export default function MainSector() {
+  let [resume,setResume]=useState({})
   let dispatch = useDispatch();
   let pathName = useNavigate();
   let scroolRef = useRef();
+  useEffect(()=>{
+    scroolRef.current.scrollTop=1
+  },[])
   NextPage(scroolRef, pathName);
+  PreviousPage(scroolRef, pathName)
   return (
     <div className={styles.main_bob} ref={scroolRef}>
-      {window?.innerWidth > 576 ? (
         <div className={styles.intro}>
-          <div className={styles.who_section}>
-            <div className={styles.who_cover}>
-              <Title children="FRONT-END" />
-              <Title children="PROGRAMMER" />
+            <div>
+                <div className={styles.who_cover}>
+                  <Title children="Hi I'm" />
+                  <Title children="Abbos S.A" />
+                </div>
+                <div className={styles.offer}>
+                    contact me to develop your<p></p> <ExampleComponent/> further
+                </div>
+                <div className={styles.button_sector}>
+                  <Button
+                    onClick={() => dispatch(contactActive({ payload: true }))}
+                  >
+                    Contact me
+                  </Button>
+                  <Button
+                    onMouseEnter={() => setResume({active:true})}
+                  >
+                    Resume
+                    {
+                      resume.active?
+                      <div style={{position:"relative"}} onMouseLeave={()=>setResume({active:false})}>
+                        <Link to="/resume">
+                          <Button
+                            sx={{background:"var(--color-brand--6)",border:"none",fontSize:"1rem",position:"absolute",transform:"translate(-5rem,2rem)"}}
+                            onClick={()=>{dispatch(setResumeLanguage({id:2}))}}
+                          >ENG</Button>
+                        </Link>
+                        <Link to="/resume">
+                          <Button 
+                            sx={{background:"var(--color-brand--6)",border:"none",fontSize:"1rem",position:"absolute",transform:"translate(1.5rem,2rem)"}}
+                            onClick={()=>{dispatch(setResumeLanguage({id:1}))}}
+                          >UZ</Button>
+                        </Link>
+                        <Link to="/resume">
+                          <Button 
+                            sx={{background:"var(--color-brand--6)",border:"none",fontSize:"1rem",position:"absolute",transform:"translate(6rem,-2.5rem)"}}
+                            onClick={()=>{dispatch(setResumeLanguage({id:3}))}}
+                            >RU</Button>
+                        </Link>
+                      </div>:""
+                    }
+                  </Button>
+                </div>
             </div>
-            <div className={styles.offer}>
-              <p>
-                contact me to develop your <ExampleComponent /> further
-              </p>
-              <Button
-                onClick={() => dispatch(contactActive({ payload: true }))}
-              >
-                Contact me
-              </Button>
-            </div>
-          </div>
-          <div className={styles.image_section}>
-            <ProfilePhoto
-              src={ProfileImage}
-              sx={{ transform: "translate(-2rem,-2rem)", transition: "1s all" }}
-            />
-            <p className={styles.profile_name}>Savrjonov Abbos</p>
-          </div>
         </div>
-      ) : (
-        <div className={styles.intro}>
-          <div className={styles.image_section}>
-            <ProfilePhoto
-              src={ProfileImage}
-              sx={{ transform: "translate(-2rem,-2rem)", transition: "1s all" }}
-            />
-            <p className={styles.profile_name}>Savrjonov Abbos</p>
-          </div>
-          <div className={styles.who_section}>
-            <div className={styles.who_cover}>
-              <Title children="FRONT-END" />
-              <Title children="PROGRAMMER" />
-            </div>
-            <div className={styles.offer}>
-              <p>
-                contact me to develop your <ExampleComponent /> further
-              </p>
-              <Button
-                onClick={() => dispatch(contactActive({ payload: true }))}
-              >
-                Contact me
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
       <div className={styles.page_number}>
         <Title
           children="01"

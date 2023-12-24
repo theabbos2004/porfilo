@@ -1,0 +1,23 @@
+.Thanks_section{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #383838;
+    .Thanks_box{
+        min-width: 30rem;
+        min-height: 10rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: var(--color-brand--1);
+        font-size: 1.5rem;
+        color: var(--color-brand--2);
+        border-radius: 1rem;
+    }
+}

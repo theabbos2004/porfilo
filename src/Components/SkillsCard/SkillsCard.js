@@ -7,20 +7,13 @@ export default function SkillsCard({ data = [], index = 0 }) {
         <div className={styles.main_card_section}>
           <div className={styles.main_card}>
             <p className={styles.title}>{data?.title}</p>
-            <table>
-             <thead>
-              <tr>
-                  {data?.dropTitle?.map((item, indx) => (
-                    <th key={indx}>{item}</th>
-                  ))}
-                </tr>
-             </thead>
+            <table style={{marginTop:"2rem"}}>
              <tbody>
                 {data?.drop?.map((item, indx) => (
                   <tr key={Math.random() * 100}>
                     {item.map((itm, indx) => (
                       <td key={indx}>
-                        <div style={{ display: "flex" }}>
+                        <div style={{ display: "flex",alignItems:"center" }}>
                           {itm.icon}
                           <p
                             style={{
@@ -57,14 +50,7 @@ export default function SkillsCard({ data = [], index = 0 }) {
         >
           <div className={styles.main_card}>
             <p className={styles.title}>{data?.title}</p>
-            <table>
-              <thead>
-                <tr>
-                  {data?.dropTitle?.map((item, indx) => (
-                    <th key={indx}>{item}</th>
-                  ))}
-                </tr>
-              </thead>
+            <table style={{marginTop:"2rem"}}>
               <tbody>
                 {data?.drop?.map((item, index) => (
                   <tr key={Math.random() * 100}>

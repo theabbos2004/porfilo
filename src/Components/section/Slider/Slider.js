@@ -54,13 +54,13 @@ export default function Slider({
           <div className={styles.portfilo_footer}>
             <a href={item?.gitHubLink} className={styles.portfilo_code}>
               <div>Click to view the code</div>
-              <icon.GitHubIcons width="20" opacity="1" color="var(--color-brand--1)"/>
+              <icon.GitHubIcons width={window.innerWidth>576?"20":"10"} opacity="1" color="var(--color-brand--1)"/>
             </a>
             <div className={styles.portfilo_use}>
-              <div>use</div>
+              <div>Build with</div>
               <div className={styles.icons}>
                 {
-                  item?.use?.map((icon,iconIndex)=>getIcon({params:{title:icon,key:iconIndex}}))
+                  item?.use?.map((icon,iconIndex)=>getIcon({params:{title:icon,key:iconIndex},width:window.innerWidth>576?"20":"10"}))
                 }
               </div>
             </div>

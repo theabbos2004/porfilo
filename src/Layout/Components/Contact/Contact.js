@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import emailjs from "@emailjs/browser";
 import { contactActive } from "../../Store/StoreSlice";
 import Button from "../../../Components/Button/Button";
+import { ReactComponent as QRCodeSvg } from "../../../img/icons/qrcode_86958044_ef56f0b73f7eb6030cfd93d8b8c19876.svg"
+import Thanks from "../../../Components/Thanks/Thanks";
 
 export default function Contact() {
   const form = useRef();
@@ -13,13 +15,11 @@ export default function Contact() {
       {
         id: 1,
         icon: "PhoneIcons",
-        title: "phoneNumber",
         drop: "+998900093204",
       },
       {
         id: 2,
         icon: "TelegramIcons",
-        title: "TelegramIcon",
         drop: "Web_developer_777",
         link: "https://t.me/Web_developer_777",
       },
@@ -27,53 +27,41 @@ export default function Contact() {
         id: 3,
         icon: "InstagramIcons",
         drop: "_the_Abbos_",
-        title: "InstagramIcon",
         link: "https://www.instagram.com/_the_abbos_/",
       },
       {
         id: 4,
         icon: "FaceBookIcon",
         drop: "_the_Abbos_",
-        title: "FaceBookIcon",
       },
       {
         id: 5,
         icon: "GitHubIcons",
         drop: "theabbos2004",
-        title: "GitHubIcon",
         link: "https://github.com/theabbos2004",
+      },
+      {
+        id: 6,
+        icon: "LocationIcon",
+        drop: "Uzbekistan/Tashkent/Angren",
+        link: "https://www.google.com/maps/place/Angren,+Uzbekistan/@41.0160596,69.9964671,12z/data=!3m1!4b1!4m6!3m5!1s0x38afeeb0f032acbf:0x6af0123d5787be09!8m2!3d41.0084382!4d70.074132!16s%2Fm%2F03mf7p2?entry=ttu",
       },
     ],
   });
   let [emailData, setEmailData] = useState({ from_name: "portfilo" });
-  let [emailSend, setEmailSend] = useState(false);
-  let store = useSelector((state) => state.counter);
+  let [emailSend, setEmailSend] = useState({send:false,status:""});
+  let store = useSelector((state) => state.store);
   let dispatch = useDispatch();
 
   const changeIcon = ({
     params = "",
     width = 20,
     height = 20,
-    hWidth = 20,
-    hHeight = 20,
-    hColor = "var(--color-brand--1)",
     color = "var(--color-brand--1)",
-    hOpacity = 1,
     opacity = 1,
   }) => {
     let Icon = icon[params.icon];
-    if (params?.hover) {
-      return (
-        <Icon
-          width={hWidth - 2}
-          height={hHeight - 2}
-          color={hColor}
-          opacity={hOpacity}
-        />
-      );
-    } else {
-      return <Icon width={width - 2} height={height - 2} color={color} opacity={opacity}/>;
-    }
+    return <Icon width={width} height={height} color={color} opacity={opacity}/>;
   };
 
   const sendEmail = (e) => {
@@ -88,11 +76,11 @@ export default function Contact() {
             email: "",
             message: "",
           });
-          setEmailSend(true);
+          setEmailSend({send:true,status:true});
         },
         (error) => {
           setEmailData({ from_name: "portfilo" });
-          setEmailSend(false);
+          setEmailSend({send:true,status:false});
         }
       );
     let booleen = true;
@@ -104,7 +92,7 @@ export default function Contact() {
       clearInterval(interval);
     }
   };
-
+  console.log(store);
   return (
     <div
       className={styles.footer}
@@ -153,10 +141,9 @@ export default function Contact() {
         >
           {store?.contactActive ? (
             <div className={styles.qr_section}>
-              <img
-                className={styles.qr_code}
-                src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png"
-              />
+              <div style={{width:"10rem",height:"10rem"}}>
+                <QRCodeSvg/>
+              </div>
               <p>Savrjonov Abbos</p>
             </div>
           ) : (
@@ -186,8 +173,9 @@ export default function Contact() {
               >
                 {changeIcon({
                   params: { ...item },
-                  width: store?.contactActive ? 17 : 20,
-                  height: store?.contactActive ? 17 : 20,
+                  width:window.innerWidth>576?17:8,
+                  height:window.innerWidth>576?17:8,
+                  opacity: item?.hover ? 1 : 0.65
                 })}
                 <div className={styles.messenger}>{item.drop}</div>
               </a>
@@ -237,7 +225,7 @@ export default function Contact() {
                 type="submit"
                 onClick={(e) => sendEmail(e)}
               >
-                {emailSend ? icon.CheckedIcon : "send"}
+                send
               </Button>
             </div>
           </form>
@@ -245,6 +233,9 @@ export default function Contact() {
           ""
         )}
       </div>
+      {
+        emailSend?.send?<Thanks error={emailSend?.status?false:true} onClick={()=>setEmailSend({send:false})}/>:""
+      }
     </div>
   );
 }

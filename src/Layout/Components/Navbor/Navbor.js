@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { menuChange } from '../../Store/StoreSlice'
 export default function Navbor() {
-  let storeMenu =useSelector(state=>state.counter.menu)
+  let storeMenu =useSelector(state=>state.store.menu)
   let dispatch =useDispatch()
   let isActive=(id)=>dispatch(menuChange(id))
   return (
