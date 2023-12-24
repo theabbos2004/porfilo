@@ -92,7 +92,6 @@ export default function Contact() {
       clearInterval(interval);
     }
   };
-  console.log(store);
   return (
     <div
       className={styles.footer}

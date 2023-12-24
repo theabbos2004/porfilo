@@ -4,10 +4,12 @@ import Title from '../../Title/Title'
 import ProfilePhoto from '../../ProfilePhoto/ProfilePhoto'
 import ProfileImage from '../../../img/arif-riyanto-vJP-wZ6hGBg-unsplash.jpg'
 import { NextIcon } from '../../../img/icons/Icons'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { NextPage } from '../../../Hooks/NextPage'
 import { PreviousPage } from '../../../Hooks/PreviousPage'
+import { contactActive, setResumeLanguage } from "../../../Layout/Store/StoreSlice";
 import Button from '../../Button/Button'
+import { useDispatch } from 'react-redux'
 export default function AboutSector() {
   let [state,setState]=useState({
     info:[
@@ -17,6 +19,8 @@ export default function AboutSector() {
       {id:4,title:"Information",drop:"Renessans ta'lim university (extramural study)"},
     ]
   })
+  let [resume,setResume]=useState({})
+  let dispatch = useDispatch();
   let pathName=useNavigate()  
   let scroolRef=useRef()
   useEffect(()=>{
@@ -54,7 +58,36 @@ export default function AboutSector() {
                   My <p>code</p> is <p>clear</p> and <p>understandable</p>. Sometimes, when I create <p>complex interfaces</p>, their external appearance is very <p>user-friendly</p>. I strive to <p>minimize</p> code repetition. I take into <p>consideration</p> the <p>requirements</p> and <p>suggestions</p> of the client.
               </div>
               <div>
-                <Button>Resume</Button>
+                <div style={{display:"flex",justifyContent:"flex-end"}}>
+                  <Button
+                        onMouseEnter={() => setResume({active:true})}
+                      >
+                        Resume
+                        {
+                          resume.active?
+                          <div style={{position:"relative"}} onMouseLeave={()=>setResume({active:false})}>
+                            <Link to="/resume">
+                              <Button
+                                sx={{background:"var(--color-brand--6)",border:"none",fontSize:"1rem",position:"absolute",transform:"translate(1rem,2rem)"}}
+                                onClick={()=>{dispatch(setResumeLanguage({id:2}))}}
+                              >ENG</Button>
+                            </Link>
+                            <Link to="/resume">
+                              <Button 
+                                sx={{background:"var(--color-brand--6)",border:"none",fontSize:"1rem",position:"absolute",transform:"translate(-5rem,2rem)"}}
+                                onClick={()=>{dispatch(setResumeLanguage({id:1}))}}
+                              >UZ</Button>
+                            </Link>
+                            <Link to="/resume">
+                              <Button 
+                                sx={{background:"var(--color-brand--6)",border:"none",fontSize:"1rem",position:"absolute",transform:"translate(-9rem,-2.5rem)"}}
+                                onClick={()=>{dispatch(setResumeLanguage({id:3}))}}
+                                >RU</Button>
+                            </Link>
+                          </div>:""
+                        }
+                  </Button>
+                </div>
               </div>
             </div>
         </div>

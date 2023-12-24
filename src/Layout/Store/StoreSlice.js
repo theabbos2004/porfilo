@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 let initialState ={
     contactActive:false,
     resumes:[
-        {id:1,img:require("../../img/Uz CV Resume_page-0001 (1).jpg"),change:false},
-        {id:2,img:require("../../img/Eng CV Resume_page-0001.jpg"),change:false},
-        {id:3,img:require("../../img/ru CV Resume_page-0001.jpg"),change:false},
+        {id:1,img:require("../../img/Uz CV Resume_page-0001 (1).jpg"),pdf:require("../../Pdf/Uz CV Resume.pdf"),change:false},
+        {id:2,img:require("../../img/Eng CV Resume_page-0001.jpg"),pdf:require("../../Pdf/Eng CV Resume.pdf"),change:false},
+        {id:3,img:require("../../img/ru CV Resume_page-0001.jpg"),pdf:require("../../Pdf/ru CV Resume.pdf"),change:false},
     ],
     menu:[
         {id:1,title:"HOME",pathName:"/",active:true},

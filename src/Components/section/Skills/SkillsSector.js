@@ -54,7 +54,6 @@ export default function SkillsSector() {
       },[])
       NextPage(scrollRef,pathName)
       PreviousPage(scrollRef,pathName)
-      console.log("other skills".toUpperCase());
   return (
     <div className={styles.skills_bob}>
         <div className={styles.skills_section} ref={scrollRef}>
