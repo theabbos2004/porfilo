@@ -3,11 +3,10 @@ import styles from "./index.module.scss";
 import Title from "../../Title/Title";
 import Button from "../../Button/Button";
 import { TypeAnimation } from "react-type-animation";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { nextPage, prevPage } from "../../../Layout/Store/StoreSlice";
 import { contactActive, setResumeLanguage } from "../../../Layout/Store/StoreSlice";
-import { NextPage} from "../../../Hooks/NextPage";
 import {Link, useNavigate,} from "react-router-dom";
-import { PreviousPage } from "../../../Hooks/PreviousPage";
 
 const ExampleComponent = () => {
   return (
@@ -27,16 +26,34 @@ const ExampleComponent = () => {
 
 export default function MainSector() {
   let [resume,setResume]=useState({})
+
   let dispatch = useDispatch();
   let pathName = useNavigate();
-  let scroolRef = useRef();
+  let scrollRef = useRef();
+
   useEffect(()=>{
-    scroolRef.current.scrollTop=1
+    scrollRef.current.scrollTop=4
   },[])
-  NextPage(scroolRef, pathName);
-  PreviousPage(scroolRef, pathName)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let {scrollHeight,scrollTop,clientHeight}=scrollRef?.current
+      if((scrollHeight-clientHeight)==scrollTop){
+        dispatch(nextPage({pathName}))
+      }
+      if(scrollTop==0){
+        dispatch(prevPage({pathName}))
+      }
+    };
+
+    scrollRef?.current?.addEventListener('scroll', handleScroll);
+
+    return () => {
+      scrollRef?.current?.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrollRef?.current?.scrollTop]);
   return (
-    <div className={styles.main_bob} ref={scroolRef}>
+    <div className={styles.main_bob} ref={scrollRef}>
         <div className={styles.intro}>
             <div>
                 <div className={styles.who_cover}>

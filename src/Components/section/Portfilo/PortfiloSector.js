@@ -3,8 +3,8 @@ import styles from "./index.module.scss";
 import Title from "../../Title/Title";
 import Slider from "../Slider/Slider";
 import { useNavigate } from "react-router-dom";
-import { NextPage } from "../../../Hooks/NextPage";
-import { PreviousPage } from "../../../Hooks/PreviousPage";
+import { nextPage, prevPage } from "../../../Layout/Store/StoreSlice";
+import { useDispatch } from "react-redux";
 export default function PortfiloSector() {
   let [state, setState] = useState({
     portfilos: [
@@ -52,11 +52,28 @@ export default function PortfiloSector() {
   });
   let pathName = useNavigate();
   let scrollRef = useRef();
+  let dispatch=useDispatch()
   useEffect(()=>{
-    scrollRef.current.scrollTop=1
+    scrollRef.current.scrollTop=1.5
   },[])
-  NextPage(scrollRef,pathName)
-  PreviousPage(scrollRef,pathName)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let {scrollHeight,scrollTop,clientHeight}=scrollRef?.current
+      if((scrollHeight-clientHeight)==scrollTop){
+        dispatch(nextPage({pathName}))
+      }
+      if(scrollTop==0){
+        dispatch(prevPage({pathName}))
+      }
+    };
+
+    scrollRef?.current?.addEventListener('scroll', handleScroll);
+
+    return () => {
+      scrollRef?.current?.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrollRef?.current?.scrollTop]);
   return (
     <div className={styles.portfilo_bob} ref={scrollRef}>
       <div className={styles.portfilo_section}>

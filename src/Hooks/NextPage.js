@@ -1,23 +1,21 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { nextPage } from "../Layout/Store/StoreSlice";
-export const NextPage =(scroolRef,pathName)=>{
+export const NextPage =(scrollRef,pathName)=>{
     let dispatch =useDispatch()
     useEffect(() => {
         const handleScroll = () => {
-         let {scrollHeight,clientHeight,scrollTop}=scroolRef?.current
-          if((scrollHeight-clientHeight)==scrollTop){
-            dispatch(nextPage(pathName))
-          }
+         let {scrollHeight,clientHeight,scrollTop}=scrollRef?.current
+          
         };
     
-        if (scroolRef && scroolRef.current) {
-          scroolRef.current.addEventListener('scroll', handleScroll);
+        if (scrollRef && scrollRef.current) {
+          scrollRef.current.addEventListener('scroll', handleScroll);
         }
     
         return () => {
-          if (scroolRef && scroolRef.current) {
-            scroolRef.current.removeEventListener('scroll', handleScroll);
+          if (scrollRef && scrollRef.current) {
+            scrollRef.current.removeEventListener('scroll', handleScroll);
           }
         };
       }, [])

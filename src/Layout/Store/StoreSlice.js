@@ -4,7 +4,7 @@ let initialState ={
     resumes:[
         {id:1,img:require("../../img/Uz CV Resume_page-0001 (1).jpg"),pdf:require("../../Pdf/Uz CV Resume.pdf"),change:false},
         {id:2,img:require("../../img/Eng CV Resume_page-0001.jpg"),pdf:require("../../Pdf/Eng CV Resume.pdf"),change:false},
-        {id:3,img:require("../../img/ru CV Resume_page-0001.jpg"),pdf:require("../../Pdf/ru CV Resume.pdf"),change:false},
+        {id:3,img:require("../../img/ru CV Resume_page-0001.jpg"),pdf:require("../../Pdf/Uz CV Resume.pdf"),change:false},
     ],
     menu:[
         {id:1,title:"HOME",pathName:"/",active:true},
@@ -31,11 +31,11 @@ let storeSlice=createSlice({
                 if(menu[i].active && i==menu.length-1){
                     newMenu.push({...menu[i],active:false})
                     newMenu[0]={...menu[0],active:true}
-                    action.payload(menu[0].pathName)
+                    action.payload.pathName(menu[0].pathName)
                 }
                 else if(menu[i-1] && menu[i-1].active){
                     newMenu.push({...menu[i],active:true})
-                    action.payload(menu[i].pathName)
+                    action.payload.pathName(menu[i].pathName)
                 }
                 else{
                     newMenu.push({...menu[i],active:false})
@@ -51,12 +51,12 @@ let storeSlice=createSlice({
                     firstActive=true
                     menu[0]={...menu[0],active:false}
                     menu[menu.length-1]={...menu[menu.length-1],active:true}
-                    action?.payload(menu[menu.length-1].pathName)
+                    action?.payload.pathName(menu[menu.length-1].pathName)
                 } 
                 else if(state.menu[i].active){
                     menu[i-1]={...menu[i-1],active:true}
                     menu[i]={...menu[i],active:false}
-                    action?.payload(menu[i-1].pathName)
+                    action?.payload.pathName(menu[i-1].pathName)
                 }
                 else{
                     menu[i]={...menu[i],active:false}

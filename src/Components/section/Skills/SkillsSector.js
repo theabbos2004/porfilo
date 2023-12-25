@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from "./index.module.scss"
 import SkillsCard from '../../SkillsCard/SkillsCard'
-import {NextPage} from '../../../Hooks/NextPage'
-import { BootstrapIcons, CheckIcon, CssIcons, FigmaIcons, GitHubIcons, GitIcons, HtmlIcons, JSIcons, MaterialUiIcon, ReactIcons, ReduxIcon, RouterIcon, SASSIcons, UzFlagIcon, VSCodeIcon } from '../../../img/icons/Icons'
+import { BootstrapIcons, CssIcons, FigmaIcons, GitIcons, HtmlIcons, JSIcons, MaterialUiIcon, ReactIcons, ReduxIcon, RouterIcon, SASSIcons, VSCodeIcon } from '../../../img/icons/Icons'
 import { ReactComponent  as PostmanIcon } from "../../../img/icons/postman.svg"
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useNavigate } from 'react-router-dom';
-import { PreviousPage } from '../../../Hooks/PreviousPage'
+import { nextPage, prevPage } from '../../../Layout/Store/StoreSlice'
+import { useDispatch } from 'react-redux'
 export default function SkillsSector() {
     let [state,setState]=useState({
         skills:[
@@ -49,11 +49,28 @@ export default function SkillsSector() {
     })
     let pathName=useNavigate()
     let scrollRef=useRef()
+    let dispatch=useDispatch()
     useEffect(()=>{
-        scrollRef.current.scrollTop=1
+        scrollRef.current.scrollTop=4
       },[])
-      NextPage(scrollRef,pathName)
-      PreviousPage(scrollRef,pathName)
+    
+      useEffect(() => {
+        const handleScroll = () => {
+          let {scrollHeight,scrollTop,clientHeight}=scrollRef?.current
+          if((scrollHeight-clientHeight)==scrollTop){
+            dispatch(nextPage({pathName}))
+          }
+          if(scrollTop==0){
+            dispatch(prevPage({pathName}))
+          }
+        };
+    
+        scrollRef?.current?.addEventListener('scroll', handleScroll);
+    
+        return () => {
+          scrollRef?.current?.removeEventListener('scroll', handleScroll);
+        };
+      }, [scrollRef?.current?.scrollTop]);
   return (
     <div className={styles.skills_bob}>
         <div className={styles.skills_section} ref={scrollRef}>

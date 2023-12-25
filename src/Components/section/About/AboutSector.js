@@ -5,9 +5,7 @@ import ProfilePhoto from '../../ProfilePhoto/ProfilePhoto'
 import ProfileImage from '../../../img/arif-riyanto-vJP-wZ6hGBg-unsplash.jpg'
 import { NextIcon } from '../../../img/icons/Icons'
 import { Link, useNavigate } from 'react-router-dom'
-import { NextPage } from '../../../Hooks/NextPage'
-import { PreviousPage } from '../../../Hooks/PreviousPage'
-import { contactActive, setResumeLanguage } from "../../../Layout/Store/StoreSlice";
+import { nextPage, prevPage, setResumeLanguage } from "../../../Layout/Store/StoreSlice";
 import Button from '../../Button/Button'
 import { useDispatch } from 'react-redux'
 export default function AboutSector() {
@@ -22,14 +20,30 @@ export default function AboutSector() {
   let [resume,setResume]=useState({})
   let dispatch = useDispatch();
   let pathName=useNavigate()  
-  let scroolRef=useRef()
+  let scrollRef=useRef()
   useEffect(()=>{
-    scroolRef.current.scrollTop=1
+    scrollRef.current.scrollTop=4
   },[])
-  NextPage(scroolRef,pathName)
-  PreviousPage(scroolRef,pathName)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let {scrollHeight,scrollTop,clientHeight}=scrollRef?.current
+      if((scrollHeight-clientHeight)==scrollTop){
+        dispatch(nextPage({pathName}))
+      }
+      if(scrollTop==0){
+        dispatch(prevPage({pathName}))
+      }
+    };
+
+    scrollRef?.current?.addEventListener('scroll', handleScroll);
+
+    return () => {
+      scrollRef?.current?.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrollRef?.current?.scrollTop]);
   return (
-    <div className={styles.about_bob} ref={scroolRef}>
+    <div className={styles.about_bob} ref={scrollRef}>
       <div className={styles.intro}>
         <div className={styles.image_section}>
             <ProfilePhoto src={ProfileImage} sx={{transform:"translate(-2rem,-2rem)"}}/>
