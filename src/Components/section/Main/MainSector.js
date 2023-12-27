@@ -52,6 +52,13 @@ export default function MainSector() {
       scrollRef?.current?.removeEventListener('scroll', handleScroll);
     };
   }, [scrollRef?.current?.scrollTop]);
+
+
+
+
+
+
+
   return (
     <div className={styles.main_bob} ref={scrollRef}>
         <div className={styles.intro}>

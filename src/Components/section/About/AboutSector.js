@@ -65,7 +65,7 @@ export default function AboutSector() {
                 }
               </div>
               <div className={styles.desc}>
-                  I <p>studied</p> in this field for <p>4</p> months at the IBS training center and did an <p>internship</p> at Next Tech for <p>2</p> months.
+                  I <p>studied</p> in this field for <p>5</p> months at the IBS training center and did an <p>internship</p> at Next Tech for <p>2</p> months.
               </div>
 
               <div className={styles.desc}>
